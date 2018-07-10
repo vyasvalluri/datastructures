@@ -1,0 +1,89 @@
+apply plugin: 'java'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+	mavenLocal()
+	mavenCentral()
+}
+
+dependencies {
+
+	testCompile 'junit:junit:4.+'
+	compile 'junit:junit:4.+'
+
+	testCompile "org.mockito:mockito-core:1.+"
+
+	// Google Guava lib
+	compile group: 'com.google.guava', name: 'guava', version: '22.0'
+
+	compile "com.google.truth:truth:0.36"
+
+}
+
+// Tests display stdout and stderr
+
+test {
+	dependsOn cleanTest
+	testLogging.showStandardStreams = true
+}
+
+String javaPackage = "com/valluri/datastructures";
+String javatestsPackage = "javatests/com/valluri/datastructures"
+
+sourceSets {
+  main {
+    java {
+      srcDirs = [
+        javaPackage + '/balancedtree',
+        javaPackage + '/binarysearchtree',
+        javaPackage + '/bloomfilter',
+        javaPackage + '/dynamicarray',
+        javaPackage + '/fenwicktree',
+        javaPackage + '/hashtable',
+        javaPackage + '/linkedlist',
+        javaPackage + '/priorityqueue',
+        javaPackage + '/quadtree',
+        javaPackage + '/queue',
+        javaPackage + '/segmenttree',
+        javaPackage + '/hashset',
+        javaPackage + '/skiplist',
+        javaPackage + '/stack',
+        javaPackage + '/suffixarray',
+        javaPackage + '/trie', 
+        javaPackage + '/unionfind',
+        javaPackage + '/utils'
+      ]
+    }
+  }
+  test {
+    java {
+      srcDirs = [
+        javatestsPackage + '/balancedtree',
+        javatestsPackage + '/binarysearchtree',
+        javatestsPackage + '/bloomfilter',
+        javatestsPackage + '/dynamicarray',
+        javatestsPackage + '/fenwicktree',
+        javatestsPackage + '/hashtable',
+        javatestsPackage + '/linkedlist',
+        javatestsPackage + '/priorityqueue',
+        javatestsPackage + '/quadtree',
+        javatestsPackage + '/queue',
+        javatestsPackage + '/segmenttree',
+        javatestsPackage + '/hashset',
+        javatestsPackage + '/skiplist',
+        javatestsPackage + '/stack',
+        javatestsPackage + '/suffixarray',
+        javatestsPackage + '/trie', 
+        javatestsPackage + '/unionfind',
+        javatestsPackage + '/utils'
+      ]
+    }
+  }
+}
+
+task buildDependenciesFolder(type: Copy) {
+	from configurations.compile
+	into './dependencies'
+}
