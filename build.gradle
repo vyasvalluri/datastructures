@@ -30,7 +30,7 @@ test {
 }
 
 String javaPackage = "com/valluri/datastructures";
-String javatestsPackage = "javatests/com/valluri/datastructures"
+String javatestsPackage = "tests/com/valluri/datastructures"
 
 sourceSets {
   main {
