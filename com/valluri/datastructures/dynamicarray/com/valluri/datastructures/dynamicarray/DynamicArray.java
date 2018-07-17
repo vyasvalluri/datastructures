@@ -8,10 +8,10 @@ public class DynamicArray<T> implements Iterable<T> {
 	private int len = 0;
 	private int capacity = 0;
 	
-	DynamicArray() {
+	public DynamicArray() {
 		this(16);
 	}
-	DynamicArray(int capacity) {
+	public DynamicArray(int capacity) {
 		if(capacity < 0) throw new IllegalArgumentException("");
 		this.capacity = capacity;
 		arr = (T[]) new Object[capacity];
@@ -57,7 +57,7 @@ public class DynamicArray<T> implements Iterable<T> {
 	public T removeAt(int index) {
 		if(index>len || index < 0 ) new ArrayIndexOutOfBoundsException();
 		T data = arr[index];
-		T[] newarr = (T[]) new Object[len--];
+		T[] newarr = (T[]) new Object[len-1];
 		for(int i=0, j=0; i<len; i++, j++) {
 			if(i == index)
 				j--;
@@ -65,19 +65,20 @@ public class DynamicArray<T> implements Iterable<T> {
 				newarr[j]=arr[i];
 		}
 		arr = newarr;
-		capacity = len--;
+		capacity = --len;
 		
 		return data;
 	}
 
 	public int indexOf(T obj) {
 		for(int i =0; i<len; i++) {
-			if(obj == null)
+			if(obj == null) {
 				if(arr[i] == null)
 					return i;
-			else
+			}else {
 				if(obj.equals(arr[i]))
 					return i;
+			}
 		}
 		return -1;
 	}
